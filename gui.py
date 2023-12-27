@@ -1,7 +1,8 @@
 import customtkinter
 from PIL import Image
+from io import BytesIO
 
-def run_GUI(img_url):
+def run_GUI(img_data):
 
     # Root creation and config
     customtkinter.set_appearance_mode('dark')
@@ -14,8 +15,9 @@ def run_GUI(img_url):
     frame.pack(pady=20, padx=60, fill='both', expand=True)
 
     # Testing this codelines
-    my_image = customtkinter.CTkImage(light_image=Image.open(img_url))
-    my_label = customtkinter.CTkLabel(root, text='', image=img_url)
+    my_image = customtkinter.CTkImage(light_image=Image.open(BytesIO(img_data)), size=(300, 300))
+    
+    my_label = customtkinter.CTkLabel(master=frame, text='', image=my_image)
     my_label.pack(pady=10)
 
 
