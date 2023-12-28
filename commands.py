@@ -32,13 +32,11 @@ def get_pokemon():
                               f"Type: {type}\n"
                               f"Weight: {weight} lb\n"
                               f"Height: {height} in")
-                              )
+                        )
 
     # Image Widget Update 
     my_image = customtkinter.CTkImage(light_image=Image.open(BytesIO(pokemon_img)), size=(310, 310))
     my_label.configure(image=my_image)
-
-    print(pokemon['name'])
 
 def clear():
     from gui import my_label, my_textbox

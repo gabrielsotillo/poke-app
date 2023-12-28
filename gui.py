@@ -1,5 +1,5 @@
 import customtkinter
-from commands import *
+from commands import get_pokemon, clear, exit_app
 
 
 def run_GUI():
