@@ -1,4 +1,4 @@
-# How to Install Poke-App
+# How to Test Poke-App
 
 ```
 git clone

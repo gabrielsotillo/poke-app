@@ -11,7 +11,7 @@ def run_GUI():
     root.geometry('800x600')
     root.title('PokeDex')
 
-    # ---------------------- Widgets ----------------------
+    # Frames
     left_frame = customtkinter.CTkFrame(master=root, width=400, fg_color="#dd2626")
     left_frame.pack(side='left', fill='both')
 
