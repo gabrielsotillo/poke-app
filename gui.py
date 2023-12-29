@@ -1,5 +1,7 @@
 import customtkinter
-from commands import get_pokemon, clear, exit_app
+from io import BytesIO
+from PIL import Image
+from commands import get_pokemon
 
 
 def run_GUI():
@@ -36,7 +38,7 @@ def run_GUI():
 
     # Buttons
     global search_button, clear_buttom, exit_button 
-    search_button = customtkinter.CTkButton(master=bottom_frame, text='Search', command=get_pokemon)
+    search_button = customtkinter.CTkButton(master=bottom_frame, text='Search', command=search)
     search_button.pack(pady=6)
     clear_button = customtkinter.CTkButton(master=bottom_frame, text='Clear', command=clear)
     clear_button.pack(pady=6)
@@ -52,4 +54,26 @@ def run_GUI():
 
     root.mainloop()
 
+def search():
 
+    try:
+        pokemon = get_pokemon(my_entry.get().lower())
+    except:
+        clear()
+        my_textbox.insert("0.0", f"Ese Pokemon no existe.")
+        return
+
+    my_textbox.delete("0.0","end")
+    my_textbox.insert("0.0", pokemon.get_info())
+
+    # Image Widget Update 
+    my_image = customtkinter.CTkImage(light_image=Image.open(BytesIO(pokemon.image)), size=(310, 310))
+    my_label.configure(image=my_image)
+
+def clear():
+
+    my_textbox.delete("0.0","end")
+    my_label.configure(image=None)
+
+def exit_app():
+    exit()
