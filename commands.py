@@ -3,6 +3,31 @@ import customtkinter
 from io import BytesIO
 from PIL import Image
 
+class Pokemon:
+
+    def __init__(self, pokemon):
+
+        self.name = pokemon['name'].capitalize()
+        self.weight = pokemon['weight']
+        self.height = pokemon['height']
+        self.type = pokemon['types'][0]['type']['name'].capitalize()
+        self.image = self.get_img(pokemon) 
+
+    def get_img(self, pokemon):
+            
+        url_img = pokemon['sprites']['front_default']
+        r = requests.get(url_img)
+        return r.content 
+    
+    def get_info(self):
+         info = (f"Name: {self.name}\n"
+                 f"Type: {self.type}\n"
+                 f"Weight: {self.weight} lb\n"
+                 f"Height: {self.height} in")
+
+         return info
+        
+
 def get_pokemon():
 
     from gui import my_entry, my_label, my_textbox
@@ -10,32 +35,19 @@ def get_pokemon():
     try:
         # Dictionary about the Pokemon requested
         r = requests.get(f'https://pokeapi.co/api/v2/pokemon/{my_entry.get().lower()}')
-        pokemon = r.json() 
+        pokemon_json = r.json() 
     except:
         clear()
         my_textbox.insert("0.0", f"Ese Pokemon no existe.")
         return
         
-    # Photo of that Pokemon
-    img_url = pokemon['sprites']['front_default']
-    r = requests.get(img_url)
-    pokemon_img = r.content 
-
-    # TextBox Widget Update
-    name = pokemon['name'].capitalize()
-    weight = pokemon['weight']
-    height = pokemon['height']
-    type = pokemon['types'][0]['type']['name'].capitalize()
+    pokemon = Pokemon(pokemon_json)
 
     my_textbox.delete("0.0","end")
-    my_textbox.insert("0.0", (f"Name: {name}\n"
-                              f"Type: {type}\n"
-                              f"Weight: {weight} lb\n"
-                              f"Height: {height} in")
-                        )
+    my_textbox.insert("0.0", pokemon.get_info())
 
     # Image Widget Update 
-    my_image = customtkinter.CTkImage(light_image=Image.open(BytesIO(pokemon_img)), size=(310, 310))
+    my_image = customtkinter.CTkImage(light_image=Image.open(BytesIO(pokemon.image)), size=(310, 310))
     my_label.configure(image=my_image)
 
 def clear():
