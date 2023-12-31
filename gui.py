@@ -54,6 +54,7 @@ def run_GUI():
 
     root.mainloop()
 
+# Functions for buttons
 def search():
 
     try:
@@ -63,6 +64,7 @@ def search():
         my_textbox.insert("0.0", f"Ese Pokemon no existe.")
         return
 
+    # TextBox Widget Update
     my_textbox.delete("0.0","end")
     my_textbox.insert("0.0", pokemon.get_info())
 

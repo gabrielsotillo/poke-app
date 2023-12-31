@@ -10,9 +10,9 @@ class Pokemon:
         self.height = f"{pokemon['height']} in"
         self.type = pokemon['types'][0]['type']['name'].capitalize()
         self.id = pokemon['id']
-        self.image = self.get_img(pokemon) 
+        self.image = self.__get_img(pokemon) 
 
-    def get_img(self, pokemon):
+    def __get_img(self, pokemon): # The __ before implies this is a private function
             
         url_img = pokemon['sprites']['front_default']
         r = requests.get(url_img)
