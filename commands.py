@@ -7,9 +7,7 @@ gabo_data = json.load(json_gabo_file)
 
 class Pokemon:
 
-    def __init__(self, pokename):
-
-        pokemon = requests.get(f'https://pokeapi.co/api/v2/pokemon/{pokename}').json() 
+    def __init__(self, pokemon):
 
         self.name = pokemon['name'].capitalize()
         self.weight = f"{pokemon['weight']} lb"
@@ -40,6 +38,6 @@ def get_pokemon(pokename):
     if ((pokename == "gabo") | (pokename == "gabrielon" )| (pokename ==  "gabriel" )|(pokename == "gabomon")):
         pokemon=Pokemon(gabo_data)
         return pokemon
-    else: 
-        pokemon = Pokemon(pokename)
+    else:
+        pokemon = Pokemon(requests.get(f'https://pokeapi.co/api/v2/pokemon/{pokename}').json())
         return pokemon
