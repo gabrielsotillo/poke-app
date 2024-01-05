@@ -3,7 +3,9 @@ import requests
 
 class Pokemon:
 
-    def __init__(self, pokemon):
+    def __init__(self, pokename):
+
+        pokemon = requests.get(f'https://pokeapi.co/api/v2/pokemon/{pokename}').json() 
 
         self.name = pokemon['name'].capitalize()
         self.weight = f"{pokemon['weight']} lb"
@@ -32,8 +34,5 @@ class Pokemon:
 
 def get_pokemon(pokename):
 
-    # Dictionary about the Pokemon requested
-    r = requests.get(f'https://pokeapi.co/api/v2/pokemon/{pokename}')
-    pokemon_json = r.json() 
-    pokemon = Pokemon(pokemon_json)
+    pokemon = Pokemon(pokename)
     return pokemon
