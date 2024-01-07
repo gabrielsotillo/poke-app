@@ -19,7 +19,6 @@ class Pokemon:
     def __get_img(self, pokemon): # The __ before implies this is a private function
         url_img = pokemon['sprites']['front_default']
         r = requests.get(url_img)
-        print(r.content)
         return r.content 
     
     def get_info(self):
