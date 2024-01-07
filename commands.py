@@ -3,7 +3,7 @@ import requests
 import json
 json_gabo_file = open("data/gabo.json")
 gabo_data = json.load(json_gabo_file)
-gabo_img = open("data/gabo.jpg", "rb")
+
 
 class Pokemon:
 
@@ -17,14 +17,10 @@ class Pokemon:
         self.image = self.__get_img(pokemon) 
 
     def __get_img(self, pokemon): # The __ before implies this is a private function
-        if pokemon["name"] == "Gabomon":
-            f = gabo_img.read()
-            b = bytearray(f)
-            return  b
-        else: 
-            url_img = pokemon['sprites']['front_default']
-            r = requests.get(url_img)
-            return r.content 
+        url_img = pokemon['sprites']['front_default']
+        r = requests.get(url_img)
+        print(r.content)
+        return r.content 
     
     def get_info(self):
 

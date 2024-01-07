@@ -20,6 +20,6 @@
         "url": "https://pokeapi.co/api/v2/pokemon-species/25/"
     },
     "sprites": {
-        "front_default": "mariQElQLoLea"
+        "front_default": "https://i.imgur.com/Mqup5g9.jpg"
     } 
 }
