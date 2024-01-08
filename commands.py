@@ -16,12 +16,7 @@ class Pokemon:
         self.id = pokemon['id']
         self.image = self.__get_img(pokemon) 
 
-    def __get_img(self, pokemon): # The __ before implies this is a private function
-        url_img = pokemon['sprites']['front_default']
-        r = requests.get(url_img)
-        return r.content 
-    
-    def get_info(self):
+    def __str__(self):
 
         info = ""
         for key in vars(self):
@@ -31,7 +26,13 @@ class Pokemon:
                 info = info + f"{key.capitalize()}: {vars(self)[key]}\n"
          
         return info
-        
+
+    def __get_img(self, pokemon): # The __ before implies this is a private function
+
+        url_img = pokemon['sprites']['front_default']
+        r = requests.get(url_img)
+        return r.content 
+    
 
 def get_pokemon(pokename):
 

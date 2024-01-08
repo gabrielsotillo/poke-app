@@ -66,7 +66,7 @@ def search():
 
     # TextBox Widget Update
     my_textbox.delete("0.0","end")
-    my_textbox.insert("0.0", pokemon.get_info())
+    my_textbox.insert("0.0", pokemon)
 
     # Image Widget Update 
     my_image = customtkinter.CTkImage(light_image=Image.open(BytesIO(pokemon.image)), size=(310, 310))
